@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ControlsComponent implements OnInit {
 
+  time = '00:00:00';
+
   constructor() { }
 
   ngOnInit() {
