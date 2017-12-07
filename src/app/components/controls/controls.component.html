@@ -1,8 +1,8 @@
 <div ngClass="controls">
   <mat-card>
     <div ngClass="controls__container">
-      <button mat-raised-button color="primary" ngClass="controls__button">Start</button>
-      <button mat-raised-button color="accent" ngClass="controls__button">Stop</button>
+      <button mat-raised-button color="primary" ngClass="controls__button" (click)="started ? pause() : start()">{{ started ? 'Pause' : 'Start' }}</button>
+      <button *ngIf="started" mat-raised-button color="accent" ngClass="controls__button" (click)="stop()">Stop</button>
       <span ngClass="controls__timer">{{ time }}</span>
     </div>
     <div ngClass="controls__container">
