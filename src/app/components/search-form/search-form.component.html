@@ -1,0 +1,32 @@
+<div ngClass="search-form">
+  <mat-card>
+    <mat-card-title ngClass="search-form__header">Choose a task for time tracking</mat-card-title>
+    <div ngClass="search-form__fields">
+      <div ngClass="search-form__field-container">
+        <label for="autocomplete" ngClass="search-form__label">Find task by title or id</label>
+
+        <mat-form-field #autocomplete ngClass="search-form__field">
+          <input matInput [matAutocomplete]="auto">
+        </mat-form-field>
+
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let task of tasks" [value]="task">
+            {{ task }}
+          </mat-option>
+        </mat-autocomplete>
+      </div>
+      <div ngClass="search-form__field-container search-form__field-container--shrink">OR</div>
+      <div ngClass="search-form__field-container search-form__field-container--underlined">
+        <label for="select" ngClass="search-form__label">Choose from your tasks</label>
+
+        <mat-form-field #select ngClass="search-form__field">
+          <mat-select [(value)]="selected">
+            <mat-option *ngFor="let task of tasks" [value]="task">
+              {{ task }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-card>
+</div>
