@@ -1,16 +1,15 @@
-import { Component, AfterContentChecked } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { loginPattern, passwordPattern } from '../../../constants/validation-patterns';
+const LOGIN_PATTERN = /^[A-Za-z0-9 ]*$/;
+const PASSWORD_PATTERN = /^[A-Za-z0-9!@#$%^&*()_ ]*$/;
 
 @Component({
   selector: 'app-auth-page',
   templateUrl: './auth-page.component.html',
   styleUrls: ['./auth-page.component.scss']
 })
-export class AuthPageComponent implements AfterContentChecked {
-  allowLogin = false;
-
+export class AuthPageComponent {
   authForm: FormGroup;
 
   constructor(
@@ -19,18 +18,14 @@ export class AuthPageComponent implements AfterContentChecked {
     this.createForm();
   }
 
-  ngAfterContentChecked() {
-    this.allowLogin = this.authForm.status === 'VALID';
-  }
-
   createForm() {
     this.authForm = this.fb.group({
       url: ['', Validators.required],
       login: ['', Validators.compose([
-        Validators.required, Validators.pattern(loginPattern)
+        Validators.required, Validators.pattern(LOGIN_PATTERN)
       ])],
       password: ['', Validators.compose([
-        Validators.required, Validators.pattern(passwordPattern)
+        Validators.required, Validators.pattern(PASSWORD_PATTERN)
       ])]
     });
   }

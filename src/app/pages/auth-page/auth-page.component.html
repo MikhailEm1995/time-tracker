@@ -1,25 +1,25 @@
-<div ngClass="auth-container">
-  <div ngClass="auth">
-    <mat-card ngClass="auth__card">
+<div class="auth-container">
+  <div class="auth">
+    <mat-card class="auth__card">
       <mat-card-title>JIRA Time Tracker</mat-card-title>
       <form [formGroup]="authForm" novalidate>
-        <div ngClass="auth__fields">
-          <mat-form-field ngClass="auth__field">
+        <div class="auth__fields">
+          <mat-form-field class="auth__field">
             <input type="url" formControlName="url" placeholder="Your JIRA URL" matInput>
           </mat-form-field>
-          <mat-form-field ngClass="auth__field">
+          <mat-form-field class="auth__field">
             <input formControlName="login" placeholder="Login" matInput>
           </mat-form-field>
-          <mat-form-field ngClass="auth__field">
+          <mat-form-field class="auth__field">
             <input type="password" formControlName="password" placeholder="Password" matInput>
           </mat-form-field>
         </div>
-        <div ngClass="auth__btn-group">
+        <div class="auth__btn-group">
           <button
             routerLink="/tracker"
             routerLinkActive="active"
-            mat-raised-button ngClass="auth__btn"
-            [disabled]="!allowLogin">LOGIN</button>
+            mat-raised-button class="auth__btn"
+            [disabled]="authForm.invalid">LOGIN</button>
         </div>
       </form>
     </mat-card>

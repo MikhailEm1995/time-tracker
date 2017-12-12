@@ -13,6 +13,10 @@ export class ControlsComponent implements OnInit {
 
   inProgress = false;
 
+  onToggle() {
+    this.started ? this.pause() : this.start();
+  }
+
   start() {
     this.started = true;
     this.inProgress = true;
