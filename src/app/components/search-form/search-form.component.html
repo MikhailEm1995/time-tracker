@@ -1,25 +1,24 @@
-<div ngClass="search-form">
+<div class="search-form">
   <mat-card>
-    <mat-card-title ngClass="search-form__header">Choose a task for time tracking</mat-card-title>
-    <div ngClass="search-form__fields">
-      <div ngClass="search-form__field-container">
-        <label for="autocomplete" ngClass="search-form__label">Find task by title or id</label>
+    <mat-card-title class="search-form__header">Choose a task for time tracking</mat-card-title>
+    <div class="search-form__fields">
+      <div class="search-form__field-container">
+        <label for="autocomplete" class="search-form__label">Find task by title or id</label>
 
-        <mat-form-field #autocomplete ngClass="search-form__field">
-          <input matInput [matAutocomplete]="auto">
+        <mat-form-field id="autocomplete" #autocomplete class="search-form__field">
+          <input matInput [matAutocomplete]="auto" [formControl]="autocompleteControl">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let task of filteredTasks | async" [value]="task">
+              {{ task }}
+            </mat-option>
+          </mat-autocomplete>
         </mat-form-field>
-
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let task of tasks" [value]="task">
-            {{ task }}
-          </mat-option>
-        </mat-autocomplete>
       </div>
-      <div ngClass="search-form__field-container search-form__field-container--shrink">OR</div>
-      <div ngClass="search-form__field-container search-form__field-container--underlined">
-        <label for="select" ngClass="search-form__label">Choose from your tasks</label>
+      <div class="search-form__field-container search-form__field-container--shrink">OR</div>
+      <div class="search-form__field-container search-form__field-container--underlined">
+        <label for="select" class="search-form__label">Choose from your tasks</label>
 
-        <mat-form-field #select ngClass="search-form__field">
+        <mat-form-field id="select" #select class="search-form__field">
           <mat-select [(value)]="selected">
             <mat-option *ngFor="let task of tasks" [value]="task">
               {{ task }}
