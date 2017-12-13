@@ -16,8 +16,7 @@
         </div>
         <div class="auth__btn-group">
           <button
-            routerLink="/tracker"
-            routerLinkActive="active"
+            (click)="login()"
             mat-raised-button class="auth__btn"
             [disabled]="authForm.invalid">LOGIN</button>
         </div>

@@ -14,6 +14,9 @@ import { ControlsComponent } from './components/controls/controls.component';
 
 import { AppRoutingModule } from './modules/app-routing/app-routing.module';
 
+import { AuthGuardService } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +34,10 @@ import { AppRoutingModule } from './modules/app-routing/app-routing.module';
     MaterialModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    AuthGuardService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

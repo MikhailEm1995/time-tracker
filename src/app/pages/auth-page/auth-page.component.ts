@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { AuthService } from '../../services/auth.service';
 
 const LOGIN_PATTERN = /^[A-Za-z0-9 ]*$/;
 const PASSWORD_PATTERN = /^[A-Za-z0-9!@#$%^&*()_ ]*$/;
@@ -13,9 +16,25 @@ export class AuthPageComponent {
   authForm: FormGroup;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public authService: AuthService,
+    public router: Router
   ) {
     this.createForm();
+  }
+
+  login() {
+    this.authService.login().subscribe(() => {
+      if (this.authService.isLoggedIn) {
+        const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/tracker';
+
+        this.router.navigate([redirect]);
+      }
+    });
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
   createForm() {
