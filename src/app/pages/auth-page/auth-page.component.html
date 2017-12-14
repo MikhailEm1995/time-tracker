@@ -6,7 +6,7 @@
         <div class="auth__fields">
           <mat-form-field class="auth__field">
             <input type="url" formControlName="url" placeholder="Your JIRA URL" matInput>
-            <mat-error *ngIf="authForm.get('url').invalid">{{ getErrorMessage('url') | capitalize }}</mat-error>
+            <mat-error *ngIf="authForm.get('url').invalid">{{ getErrorMessage('url', 'Specified url doesn\'t match the pattern') | capitalize }}</mat-error>
           </mat-form-field>
           <mat-form-field class="auth__field">
             <input formControlName="login" placeholder="Login" matInput>
