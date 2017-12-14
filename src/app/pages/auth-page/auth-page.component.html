@@ -6,12 +6,15 @@
         <div class="auth__fields">
           <mat-form-field class="auth__field">
             <input type="url" formControlName="url" placeholder="Your JIRA URL" matInput>
+            <mat-error *ngIf="authForm.get('url').invalid">{{ getErrorMessage('url') | capitalize }}</mat-error>
           </mat-form-field>
           <mat-form-field class="auth__field">
             <input formControlName="login" placeholder="Login" matInput>
+            <mat-error *ngIf="authForm.get('login').invalid">{{ getErrorMessage('login') | capitalize }}</mat-error>
           </mat-form-field>
           <mat-form-field class="auth__field">
             <input type="password" formControlName="password" placeholder="Password" matInput>
+            <mat-error *ngIf="authForm.get('password').invalid">{{ getErrorMessage('password') | capitalize }}</mat-error>
           </mat-form-field>
         </div>
         <div class="auth__btn-group">

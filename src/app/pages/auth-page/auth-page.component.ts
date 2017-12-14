@@ -23,7 +23,7 @@ export class AuthPageComponent {
     this.createForm();
   }
 
-  login() {
+  login(): void {
     this.authService.login().subscribe(() => {
       if (this.authService.isLoggedIn) {
         const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/tracker';
@@ -33,11 +33,7 @@ export class AuthPageComponent {
     });
   }
 
-  logout() {
-    this.authService.logout();
-  }
-
-  createForm() {
+  createForm(): void {
     this.authForm = this.fb.group({
       url: ['', Validators.required],
       login: ['', Validators.compose([
@@ -47,5 +43,15 @@ export class AuthPageComponent {
         Validators.required, Validators.pattern(PASSWORD_PATTERN)
       ])]
     });
+  }
+
+  getErrorMessage(value: string): string {
+    let message: string;
+
+    message = this.authForm.get(value).value.length === 0 ?
+      `This field must contain ${value}` :
+      `${value} contains forbidden characters`;
+
+    return message;
   }
 }

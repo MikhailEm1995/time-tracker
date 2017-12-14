@@ -19,7 +19,7 @@ export class SearchFormComponent implements OnInit {
 
   selected: string = this.tasks[0];
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.filteredTasks = this.autocompleteControl.valueChanges
       .pipe(
         startWith(''),

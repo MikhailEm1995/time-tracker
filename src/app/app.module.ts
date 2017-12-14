@@ -16,6 +16,7 @@ import { AppRoutingModule } from './modules/app-routing/app-routing.module';
 
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
+import { CapitalizePipe } from './pipes/capitalize.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AuthService } from './services/auth.service';
     TrackerPageComponent,
     SearchFormComponent,
     DescriptionComponent,
-    ControlsComponent
+    ControlsComponent,
+    CapitalizePipe
   ],
   imports: [
     AppRoutingModule,
