@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-controls',
   templateUrl: './controls.component.html',
   styleUrls: ['./controls.component.scss']
 })
-export class ControlsComponent implements OnInit {
+export class ControlsComponent{
 
   time = '00:00:00';
 
@@ -13,27 +13,22 @@ export class ControlsComponent implements OnInit {
 
   inProgress = false;
 
-  onToggle() {
+  onToggle(): void {
     this.started ? this.pause() : this.start();
   }
 
-  start() {
+  start(): void {
     this.started = true;
     this.inProgress = true;
   }
 
-  pause() {
+  pause(): void {
     this.inProgress = false;
   }
 
-  stop() {
+  stop(): void {
     this.started = false;
     this.inProgress = false;
-  }
-
-  constructor() { }
-
-  ngOnInit() {
   }
 
 }
