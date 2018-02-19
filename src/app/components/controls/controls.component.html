@@ -4,6 +4,11 @@
       <button mat-raised-button color="primary" class="controls__button" (click)="onToggle()">{{ started ? 'Pause' : 'Start' }}</button>
       <button *ngIf="started" mat-raised-button color="accent" class="controls__button" (click)="stop()">Stop</button>
       <span class="controls__timer">{{ time }}</span>
+      <mat-form-field class="controls__date">
+        <input matInput [matDatepicker]="datepicker" [formControl]="date" title="Date">
+        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+        <mat-datepicker #datepicker></mat-datepicker>
+      </mat-form-field>
     </div>
     <div class="controls__container">
       <button mat-raised-button color="primary" class="controls__track-button">Track it!</button>
