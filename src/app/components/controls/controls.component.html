@@ -1,8 +1,9 @@
 <div class="controls">
   <mat-card>
     <div class="controls__container">
-      <button mat-raised-button color="primary" class="controls__button" (click)="onToggle()">{{ started ? 'Pause' : 'Start' }}</button>
-      <button *ngIf="started" mat-raised-button color="accent" class="controls__button" (click)="stop()">Stop</button>
+      <button *ngIf="!isInProgress" mat-raised-button color="primary" class="controls__button" (click)="start()">Start</button>
+      <button *ngIf="isInProgress" mat-raised-button color="primary" class="controls__button" (click)="pause()">Pause</button>
+      <button *ngIf="isStarted" mat-raised-button color="accent" class="controls__button" (click)="stop()">Stop</button>
       <input class="controls__timer" title="Time" [value]="time">
       <mat-form-field class="controls__date">
         <input matInput [matDatepicker]="datepicker" [formControl]="date" title="Date">
