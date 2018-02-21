@@ -8,8 +8,7 @@ import { AuthGuardService } from '../../services/auth-guard.service';
 
 const appRoutes: Routes = [
   { path: 'auth', component: AuthPageComponent },
-  // TODO Раскомментировать
-  { path: 'tracker', /*canActivate: [AuthGuardService],*/ component: TrackerPageComponent },
+  { path: 'tracker', canActivate: [AuthGuardService], component: TrackerPageComponent },
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
   { path: '**', component: Page404Component }
 ];

@@ -25,8 +25,12 @@ export class AuthPageComponent {
   }
 
   login(): void {
-    this.authService.login().subscribe(() => {
-      if (this.authService.isLoggedIn) {
+    const url = this.authForm.controls.url.value;
+    const username = this.authForm.controls.login.value;
+    const password = this.authForm.controls.password.value;
+
+    this.authService.login(url, username, password).subscribe(() => {
+        if (AuthService.isLoggedIn) {
         const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/tracker';
 
         this.router.navigate([redirect]);

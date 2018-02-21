@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AuthPageComponent } from './pages/auth-page/auth-page.component';
@@ -15,7 +16,8 @@ import { ControlsComponent } from './components/controls/controls.component';
 import { AppRoutingModule } from './modules/app-routing/app-routing.module';
 
 import { AuthGuardService } from './services/auth-guard.service';
-import { AuthService } from './services/auth.service';
+import { AuthService, AuthInterceptor } from './services/auth.service';
+import { TasksService } from './services/tasks.service';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
 
 @NgModule({
@@ -34,11 +36,18 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     AuthGuardService,
-    AuthService
+    AuthService,
+    TasksService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
