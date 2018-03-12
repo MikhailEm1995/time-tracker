@@ -7,9 +7,9 @@
 
         <mat-form-field id="autocomplete" #autocomplete class="search-form__field">
           <input matInput [matAutocomplete]="auto" [formControl]="autocompleteControl">
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let task of filteredTasks | async" [value]="task">
-              {{ task }}
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onChosen()">
+            <mat-option *ngFor="let task of filteredTasks" [value]="task.id + '. ' + task.summary">
+              {{ task.id + '. ' + task.summary }}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
@@ -19,9 +19,9 @@
         <label for="select" class="search-form__label">Choose from your tasks</label>
 
         <mat-form-field id="select" #select class="search-form__field">
-          <mat-select [(value)]="selected">
-            <mat-option *ngFor="let task of tasks" [value]="task">
-              {{ task }}
+          <mat-select [(value)]="selected" (selectionChange)="onSelect()">
+            <mat-option *ngFor="let task of tasks" [value]="task.id + '. ' + task.summary">
+              {{ task.id + '. ' + task.summary }}
             </mat-option>
           </mat-select>
         </mat-form-field>

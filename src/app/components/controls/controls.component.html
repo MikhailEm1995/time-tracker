@@ -1,10 +1,10 @@
 <div class="controls">
   <mat-card>
     <div class="controls__container">
-      <button *ngIf="!isInProgress" mat-raised-button color="primary" class="controls__button" (click)="start()">Start</button>
-      <button *ngIf="isInProgress" mat-raised-button color="primary" class="controls__button" (click)="pause()">Pause</button>
-      <button *ngIf="isStarted" mat-raised-button color="accent" class="controls__button" (click)="stop()">Stop</button>
-      <input class="controls__timer" title="Time" [value]="time">
+      <button *ngIf="!isInProgress" mat-raised-button color="primary" class="controls__button" (click)="start()" [disabled]="isDisabled">Start</button>
+      <button *ngIf="isInProgress" mat-raised-button color="primary" class="controls__button" (click)="pause()" [disabled]="isDisabled">Pause</button>
+      <button *ngIf="isStarted" mat-raised-button color="accent" class="controls__button" (click)="stop()" [disabled]="isDisabled">Stop</button>
+      <input class="controls__timer" title="Time" [value]="time" [disabled]="isDisabled">
       <mat-form-field class="controls__date">
         <input matInput [matDatepicker]="datepicker" [formControl]="date" title="Date">
         <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
@@ -12,7 +12,7 @@
       </mat-form-field>
     </div>
     <div class="controls__container">
-      <button mat-raised-button color="primary" class="controls__track-button">Track it!</button>
+      <button mat-raised-button color="primary" class="controls__track-button" (click)="trackTime()" [disabled]="isDisabled">Track it!</button>
     </div>
   </mat-card>
 </div>

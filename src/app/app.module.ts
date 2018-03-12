@@ -15,10 +15,11 @@ import { ControlsComponent } from './components/controls/controls.component';
 
 import { AppRoutingModule } from './modules/app-routing/app-routing.module';
 
-import { AuthGuardService } from './services/auth-guard.service';
-import { AuthService, AuthInterceptor } from './services/auth.service';
+import { AuthGuardService, AuthInterceptor } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
 import { TasksService } from './services/tasks.service';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
+import {NotificationsService} from "./services/notifications.service";
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
     AuthGuardService,
     AuthService,
     TasksService,
+    NotificationsService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpClient, HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest,
-  HttpResponse
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 
 import { API_URL } from '../../constants/ts-variables';
+import 'rxjs/add/operator/map';
+import {Router} from '@angular/router';
+import {NotificationsService} from "./notifications.service";
 
 @Injectable()
 export class AuthService {
@@ -18,11 +18,14 @@ export class AuthService {
   redirectUrl: string;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router,
+    private notifications: NotificationsService
   ) {}
 
-  static logout(): void {
+  logout(): void {
     AuthService.isLoggedIn = false;
+    this.router.navigate(['/auth']);
   }
 
   login(url, username, password): Observable<any> {
@@ -39,29 +42,14 @@ export class AuthService {
           headers: {
             'Content-Type': 'application/json',
             'X-Api-Base-Url': url
-          }
-        });
-  }
-}
-
-@Injectable()
-export class AuthInterceptor implements HttpInterceptor {
-  constructor(
-    public auth: AuthService
-  ) {}
-
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(req)
-      .do((event: HttpEvent<any>) => {
-        if (event instanceof HttpResponse) {
-          if (event.status === 204) {
-            console.dir(event);
-            AuthService.isLoggedIn = true;
-          }
-        }
-      }, (err: any) => {
-        if (err instanceof HttpErrorResponse) {
-          console.dir(err);
+          },
+          observe: 'response',
+          withCredentials: true
+        })
+      .do((res) => {
+        if (res.status === 204) {
+          AuthService.isLoggedIn = true;
+          this.notifications.showMessage('Success', 'You\'re logged in');
         }
       });
   }

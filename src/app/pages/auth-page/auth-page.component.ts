@@ -29,13 +29,15 @@ export class AuthPageComponent {
     const username = this.authForm.controls.login.value;
     const password = this.authForm.controls.password.value;
 
-    this.authService.login(url, username, password).subscribe(() => {
-        if (AuthService.isLoggedIn) {
-        const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/tracker';
+    this.authService.login(url, username, password).subscribe(
+      () => {
+          if (AuthService.isLoggedIn) {
+          const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/tracker';
 
-        this.router.navigate([redirect]);
-      }
-    });
+          this.router.navigate([redirect]);
+        }
+      },
+      (err) => console.dir(err));
   }
 
   createForm(): void {

@@ -7,7 +7,7 @@ import { Page404Component } from '../../pages/page-404/page-404.component';
 import { AuthGuardService } from '../../services/auth-guard.service';
 
 const appRoutes: Routes = [
-  { path: 'auth', component: AuthPageComponent },
+  { path: 'auth', canActivate: [AuthGuardService], component: AuthPageComponent },
   { path: 'tracker', canActivate: [AuthGuardService], component: TrackerPageComponent },
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
   { path: '**', component: Page404Component }

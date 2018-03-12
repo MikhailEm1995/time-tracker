@@ -1,7 +1,8 @@
 <div class="description">
   <mat-card>
     <mat-card-title class="description__title">Chosen task</mat-card-title>
-    <mat-card-content class="description__paragraph"><strong>Title:</strong> {{ title }} </mat-card-content>
-    <mat-card-content class="description__paragraph"><strong>Description:</strong> {{ description }}</mat-card-content>
+    <mat-card-content *ngIf="title.length > 2; else noTask" class="description__paragraph"><strong>Title:</strong><p>{{ title }}</p></mat-card-content>
+    <ng-template #noTask>No one task has been chosen</ng-template>
+    <mat-card-content *ngIf="description.length > 0" class="description__paragraph"><strong>Description:</strong><p [innerHTML]="description"></p></mat-card-content>
   </mat-card>
 </div>

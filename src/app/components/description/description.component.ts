@@ -1,4 +1,6 @@
 import {Component } from '@angular/core';
+import {TasksService} from '../../services/tasks.service';
+import {Task} from '../../../constants/ts-classes';
 
 @Component({
   selector: 'app-description',
@@ -6,7 +8,17 @@ import {Component } from '@angular/core';
   styleUrls: ['./description.component.scss']
 })
 export class DescriptionComponent {
-  title = 'MVM-1212: whatever you do';
+  constructor() {
+    TasksService.selectedTask.subscribe((task: Task) => {
+      this.updateDescription(task);
+    });
+  }
 
-  description = 'Do something with this task!';
+  title = '';
+  description = '';
+
+  updateDescription(task: Task) {
+    this.title = task.id + '. ' + task.summary;
+    this.description = task.description;
+  }
 }
