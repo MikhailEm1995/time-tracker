@@ -14,8 +14,6 @@ export class TasksService {
   static isTracking: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   userUrl: any;
-  foundTasks: Task[];
-  allTasks: Task[];
 
   trackableTask: TrackableData;
 
@@ -32,6 +30,17 @@ export class TasksService {
 
   createTrackableTask(taskId: string): void {
     this.trackableTask = new TrackableData(taskId);
+  }
+
+  setDate(date) {
+    const chosenDate = new Date(date);
+    const currentDate = new Date();
+
+    chosenDate.setHours(currentDate.getHours());
+    chosenDate.setMinutes(currentDate.getMinutes());
+    chosenDate.setSeconds(currentDate.getSeconds());
+
+    this.trackableTask.started = chosenDate.toISOString();
   }
 
   updateTrackableTask(comment, hours, minutes): void {

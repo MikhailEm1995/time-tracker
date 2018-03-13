@@ -11,6 +11,10 @@
     justify-content: space-between;
 
     margin-top: 30px;
+
+    @media only screen and (max-width: 850px) {
+      display: block;
+    }
   }
 
   &__field {
@@ -23,6 +27,12 @@
 
     &--shrink {
       flex-basis: 20%;
+    }
+
+    @media only screen and (max-width: 850px) {
+      width: 100%;
+
+      margin-bottom: 10px;
     }
   }
 

@@ -6,7 +6,7 @@
       <button *ngIf="isStarted" mat-raised-button color="accent" class="controls__button" (click)="stop()" [disabled]="isDisabled">Stop</button>
       <input class="controls__timer" title="Time" [value]="time" [disabled]="isDisabled">
       <mat-form-field class="controls__date">
-        <input matInput [matDatepicker]="datepicker" [formControl]="date" title="Date">
+        <input matInput (dateInput)="changeDate($event)" (dateChange)="changeDate($event)" [matDatepicker]="datepicker" [formControl]="date" title="Date">
         <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
         <mat-datepicker #datepicker></mat-datepicker>
       </mat-form-field>

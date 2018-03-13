@@ -8,7 +8,7 @@ import 'rxjs/add/operator/do';
 import { API_URL } from '../../constants/ts-variables';
 import 'rxjs/add/operator/map';
 import {Router} from '@angular/router';
-import {NotificationsService} from "./notifications.service";
+import {NotificationsService} from './notifications.service';
 
 @Injectable()
 export class AuthService {
